@@ -1,0 +1,1 @@
+Spellfall basic setup. Run with local server.

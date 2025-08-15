@@ -1,0 +1,1 @@
+export function initInput(h){window.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();h.onSubmit();}else if(e.key==='Backspace'){e.preventDefault();h.onBackspace();}else if(/^[a-z]$/i.test(e.key)){h.onLetter(e.key.toUpperCase());}});}

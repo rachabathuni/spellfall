@@ -1,0 +1,6 @@
+cat
+dog
+house
+word
+score
+spell

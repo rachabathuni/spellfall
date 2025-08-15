@@ -1,0 +1,1 @@
+import {Config} from './config.js';const uni='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');export function nextLetter(){return uni[Math.floor(Math.random()*uni.length)];}

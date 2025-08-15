@@ -1,0 +1,1 @@
+export class Dictionary{constructor(){this.words=new Set(['CAT','DOG','HOUSE']);}async load(u){try{const r=await fetch(u);if(!r.ok)throw 0;const t=await r.text();for(const l of t.split(/\r?\n/)){if(l.trim().length>=3)this.words.add(l.trim().toUpperCase());}return true;}catch(e){return false;}}has(w){return this.words.has(w.toUpperCase());}}
