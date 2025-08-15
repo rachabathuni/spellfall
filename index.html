@@ -49,8 +49,9 @@
       onSubmit: () => game.onSubmit()
     });
     const dict = new Dictionary();
-    let dictReady = false;
-    dict.load('./assets/wordlist.txt').then(() => { dictReady = true; }).catch(() => { dictReady = true; });
+    // Ensure the dictionary is fully loaded before starting the game.
+    // Store the loading promise so both start and restart handlers can await it.
+    const dictPromise = dict.load('./assets/wordlist.txt').catch(() => {});
     function show(el){ el.classList.remove('hidden'); el.classList.add('visible'); }
     function hide(el){ el.classList.remove('visible'); el.classList.add('hidden'); }
     game.onRenderHUD = (hud) => {
@@ -72,10 +73,15 @@
       else if (state === 'GameOver') { hide(startScreen); show(gameOverScreen); finalScore.textContent = game.score.toString(); }
     };
     startBtn.addEventListener('click', async () => {
-      if (!dictReady) await new Promise(r => setTimeout(r, 200));
+      // Wait for the dictionary to finish loading before starting.
+      await dictPromise;
       game.start(dict);
     });
-    restartBtn.addEventListener('click', () => { game.reset(); game.start(dict); });
+    restartBtn.addEventListener('click', async () => {
+      await dictPromise;
+      game.reset();
+      game.start(dict);
+    });
   </script>
 </body>
 </html>
