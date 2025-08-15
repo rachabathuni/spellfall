@@ -48,10 +48,13 @@
       onBackspace: () => game.onBackspace(),
       onSubmit: () => game.onSubmit()
     });
-    const dict = new Dictionary();
-    // Ensure the dictionary is fully loaded before starting the game.
-    // Store the loading promise so both start and restart handlers can await it.
-    const dictPromise = dict.load('./assets/wordlist.txt').catch(() => {});
+      const dict = new Dictionary();
+      // Ensure the dictionary is fully loaded before starting the game.
+      // Store the loading promise so both start and restart handlers can await it.
+      const dictPromise = dict
+        .load('./assets/wordlist.txt')
+        .then(() => console.log('Dictionary promise resolved'))
+        .catch((e) => console.error('Dictionary promise rejected', e));
     function show(el){ el.classList.remove('hidden'); el.classList.add('visible'); }
     function hide(el){ el.classList.remove('visible'); el.classList.add('hidden'); }
     game.onRenderHUD = (hud) => {
@@ -72,16 +75,20 @@
       else if (state === 'Playing') { hide(startScreen); hide(gameOverScreen); }
       else if (state === 'GameOver') { hide(startScreen); show(gameOverScreen); finalScore.textContent = game.score.toString(); }
     };
-    startBtn.addEventListener('click', async () => {
-      // Wait for the dictionary to finish loading before starting.
-      await dictPromise;
-      game.start(dict);
-    });
-    restartBtn.addEventListener('click', async () => {
-      await dictPromise;
-      game.reset();
-      game.start(dict);
-    });
+      startBtn.addEventListener('click', async () => {
+        console.log('Start button clicked');
+        // Wait for the dictionary to finish loading before starting.
+        await dictPromise;
+        console.log('Starting game');
+        game.start(dict);
+      });
+      restartBtn.addEventListener('click', async () => {
+        console.log('Restart button clicked');
+        await dictPromise;
+        game.reset();
+        console.log('Restarting game');
+        game.start(dict);
+      });
   </script>
 </body>
 </html>
