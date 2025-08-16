@@ -10,6 +10,7 @@
 <body>
   <div id="app" class="app">
     <canvas id="game" width="800" height="600"></canvas>
+    <div id="flash" class="flash"></div>
     <div id="hud" class="hud">
       <div id="timer" class="hud-left">Time: <span id="timeValue">--</span></div>
       <div id="score" class="hud-right">Score: <span id="scoreValue">0</span></div>
@@ -43,6 +44,7 @@
     const scoreValue = document.getElementById('scoreValue');
     const timeValue = document.getElementById('timeValue');
     const finalScore = document.getElementById('finalScore');
+    const flash = document.getElementById('flash');
     initInput({
       onLetter: (ch) => game.onLetter(ch),
       onBackspace: () => game.onBackspace(),
@@ -53,6 +55,11 @@
     dict.load('./assets/wordlist.txt').then(() => { dictReady = true; }).catch(() => { dictReady = true; });
     function show(el){ el.classList.remove('hidden'); el.classList.add('visible'); }
     function hide(el){ el.classList.remove('visible'); el.classList.add('hidden'); }
+    function flashScreen(){
+      flash.style.transition='none';
+      flash.style.opacity='1';
+      requestAnimationFrame(()=>{flash.style.transition=`opacity ${Config.FLASH_FADE_MS}ms ease-out`;flash.style.opacity='0';});
+    }
     game.onRenderHUD = (hud) => {
       scoreValue.textContent = hud.score.toString();
       timeValue.textContent = hud.timeLeft.toFixed(1);
@@ -66,6 +73,7 @@
       assemblyBar.classList.toggle('ok', hud.assemblyFlash === 'ok');
       assemblyBar.classList.toggle('bad', hud.assemblyFlash === 'bad');
     };
+    game.onWordAccepted = flashScreen;
     game.onStateChange = (state) => {
       if (state === 'Start') { show(startScreen); hide(gameOverScreen); }
       else if (state === 'Playing') { hide(startScreen); hide(gameOverScreen); }
