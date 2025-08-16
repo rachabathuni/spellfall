@@ -2,6 +2,7 @@ import { Config } from './config.js';
 import { Renderer } from './render.js';
 import { nextLetter } from './spawn.js';
 import { scoreWord } from './scoring.js';
+const VOWELS = new Set(['A','E','I','O','U']);
 
 export class Game {
   constructor(c) {
@@ -59,6 +60,7 @@ export class Game {
       counts[L.ch] = (counts[L.ch] || 0) + 1;
     }
     for (const ch of w) {
+      if (VOWELS.has(ch)) continue;
       if ((counts[ch] || 0) <= 0) return false;
       counts[ch]--;
     }
@@ -68,6 +70,7 @@ export class Game {
   consume(w) {
     const need = {};
     for (const ch of w) {
+      if (VOWELS.has(ch)) continue;
       need[ch] = (need[ch] || 0) + 1;
     }
     this.letters = this.letters.filter(L => {
