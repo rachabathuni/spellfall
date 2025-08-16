@@ -2,7 +2,7 @@ import { Config } from './config.js';
 import { Renderer } from './render.js';
 import { nextLetter } from './spawn.js';
 import { scoreWord } from './scoring.js';
-const VOWELS = new Set(['A','E','I','O','U']);
+import { VOWELS } from './letters.js';
 
 export class Game {
   constructor(c) {

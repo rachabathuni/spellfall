@@ -1,1 +1,1 @@
-const consonants='BCDFGHJKLMNPQRSTVWXYZ'.split('');export function nextLetter(){return consonants[Math.floor(Math.random()*consonants.length)];}
+import{CONSONANTS}from'./letters.js';export function nextLetter(){return CONSONANTS[Math.floor(Math.random()*CONSONANTS.length)];}
