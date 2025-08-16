@@ -19,13 +19,15 @@ export class Renderer {
   }
 
   drawLetters(L, cw) {
+    const vowels = new Set(['A', 'E', 'I', 'O', 'U']);
     for (const l of L) {
       const x = (l.column + 0.5) * cw;
-      const isVowel = 'AEIOU'.includes(l.ch);
+      const isVowel = vowels.has(l.ch.toUpperCase());
+      this.ctx.save();
       this.ctx.fillStyle = isVowel ? Config.VOWEL_STYLE : Config.LETTER_STYLE;
       this.ctx.fillText(l.ch, x, l.y);
+      this.ctx.restore();
     }
-    this.ctx.fillStyle = Config.LETTER_STYLE;
   }
 }
 
