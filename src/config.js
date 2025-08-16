@@ -12,3 +12,4 @@ export const Config={
 	BG_COLOR:'#0f172a',
 	LETTER_FREQ_MODE:'uniform'
 };
+

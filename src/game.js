@@ -50,6 +50,7 @@ export class Game {
     this.consume(this.assembly);
     this.score += scoreWord(this.assembly);
     this.timeLeft = Config.TURN_TIME_SEC;
+    if (this.onWordAccepted) this.onWordAccepted();
     this.assembly = '';
   }
 
