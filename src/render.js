@@ -1,1 +1,33 @@
-import {Config} from './config.js';export class Renderer{constructor(c){this.canvas=c;this.ctx=c.getContext('2d');this.width=Config.CANVAS_WIDTH;this.height=Config.CANVAS_HEIGHT;this.ctx.textAlign='center';this.ctx.textBaseline='middle';this.ctx.font=Config.FONT_FAMILY;this.ctx.fillStyle=Config.LETTER_STYLE;}clear(){this.ctx.fillStyle=Config.BG_COLOR;this.ctx.fillRect(0,0,this.width,this.height);this.ctx.fillStyle=Config.LETTER_STYLE;}drawLetters(L,cw){for(const l of L){const x=(l.column+0.5)*cw;this.ctx.fillText(l.ch,x,l.y);}}}
+import { Config } from './config.js';
+
+export class Renderer {
+  constructor(c) {
+    this.canvas = c;
+    this.ctx = c.getContext('2d');
+    this.width = Config.CANVAS_WIDTH;
+    this.height = Config.CANVAS_HEIGHT;
+    this.ctx.textAlign = 'center';
+    this.ctx.textBaseline = 'middle';
+    this.ctx.font = Config.FONT_FAMILY;
+    this.ctx.fillStyle = Config.LETTER_STYLE;
+  }
+
+  clear() {
+    this.ctx.fillStyle = Config.BG_COLOR;
+    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.ctx.fillStyle = Config.LETTER_STYLE;
+  }
+
+  drawLetters(L, cw) {
+    const vowels = new Set(['A', 'E', 'I', 'O', 'U']);
+    for (const l of L) {
+      const x = (l.column + 0.5) * cw;
+      const isVowel = vowels.has(l.ch.toUpperCase());
+      this.ctx.save();
+      this.ctx.fillStyle = isVowel ? Config.VOWEL_STYLE : Config.LETTER_STYLE;
+      this.ctx.fillText(l.ch, x, l.y);
+      this.ctx.restore();
+    }
+  }
+}
+
