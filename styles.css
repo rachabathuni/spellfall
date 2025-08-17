@@ -2,7 +2,7 @@
 body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;}
 .app{position:relative;width:800px;height:600px;background:var(--panel);border-radius:16px;overflow:hidden;}
 #game{display:block;background:#0f172a;}
-.hud{position:absolute;left:0;right:0;top:8px;padding:0 12px;display:flex;justify-content:space-between;}
+.hud{position:absolute;left:0;right:0;bottom:8px;padding:0 12px;display:flex;justify-content:space-between;font-size:24px;font-weight:800;z-index:1;}
 .hud-left.low{color:var(--lowtime);}
 .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);}
 .overlay.hidden{display:none;}

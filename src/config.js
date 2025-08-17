@@ -9,7 +9,7 @@ export const Config={
 	LOW_TIME_THRESHOLD_SEC:3,
 	FONT_FAMILY:'600 28px sans-serif',
 	LETTER_STYLE:'#e5e7eb',
-	BG_COLOR:'#0f172a',
+	BG_COLOR:'#014A82',
 	LETTER_FREQ_MODE:'uniform'
 };
 
