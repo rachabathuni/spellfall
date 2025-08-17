@@ -1,12 +1,14 @@
 :root{--bg:#111827;--panel:#0b1220;--text:#e5e7eb;--accent:#60a5fa;--good:#10b981;--bad:#ef4444;--lowtime:#f59e0b;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;}
 .app{position:relative;width:800px;height:600px;background:var(--panel);border-radius:16px;overflow:hidden;}
 #game{display:block;background:#0f172a;}
-.hud{position:absolute;left:0;right:0;bottom:8px;padding:0 12px;display:flex;justify-content:space-between;font-size:24px;font-weight:800;z-index:1;}
+.hud{margin-top:8px;width:800px;display:flex;align-items:center;font-size:24px;font-weight:800;}
+.hud-left{flex:1;text-align:left;}
 .hud-left.low{color:var(--lowtime);}
+.assembly{flex:1;text-align:center;font-size:24px;font-weight:800;}
+.hud-right{flex:1;text-align:right;}
 .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);}
 .overlay.hidden{display:none;}
 .btn{background:var(--accent);color:#0b1220;border:none;border-radius:12px;padding:10px 18px;font-weight:700;cursor:pointer;}
-.assembly{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:24px;font-weight:800;}
 .assembly.ok{color:var(--good);}.assembly.bad{color:var(--bad);}
 .flash{position:absolute;inset:0;background:var(--good);opacity:0;pointer-events:none;z-index:100;}
