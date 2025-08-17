@@ -1,1 +1,1 @@
-import {Config} from './config.js';const uni='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');export function nextLetter(){return uni[Math.floor(Math.random()*uni.length)];}
+import{CONSONANTS}from'./letters.js';export function nextLetter(){return CONSONANTS[Math.floor(Math.random()*CONSONANTS.length)];}
