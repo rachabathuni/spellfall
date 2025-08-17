@@ -9,8 +9,9 @@ export const Config={
 	LOW_TIME_THRESHOLD_SEC:3,
 	FONT_FAMILY:'600 28px sans-serif',
 	LETTER_STYLE:'#e5e7eb',
-        BG_COLOR:'#014A82',
-        FLASH_FADE_MS:500,
-        LETTER_FREQ_MODE:'uniform'
+  BG_COLOR:'#014A82',
+  FLASH_FADE_MS:500,
+  LETTER_FREQ_MODE:'uniform',
+   SCORE_COLOR:'#30a200'
 };
 
