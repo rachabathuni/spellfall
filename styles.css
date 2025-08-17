@@ -50,3 +50,7 @@ body::before{
 .btn:hover{
   transform:scale(1.1);
 }
+
+.subtitle,.hint{
+  font-family:'VT323',monospace;
+}
